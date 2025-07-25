@@ -1,0 +1,8 @@
+{
+  "你": { "rank": 15, "freq": 54321, "cumFreq": 0.0234 },
+  "好": { "rank": 30, "freq": 32100, "cumFreq": 0.0456 },
+  "世": { "rank": 85, "freq": 12000, "cumFreq": 0.0912 },
+  "界": { "rank": 90, "freq": 11500, "cumFreq": 0.1023 },
+  "，": { "rank": null, "freq": null, "cumFreq": null },
+  "！": { "rank": null, "freq": null, "cumFreq": null }
+}
