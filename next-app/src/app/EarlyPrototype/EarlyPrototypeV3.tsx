@@ -25,6 +25,11 @@ interface PinyinData {
   freq: number | null;
   cumFreq: number | null;
 }
+interface FrequencyData {
+  rank: number | null;
+  freq: number | null;
+  cumFreq: number | null;
+}
 
 const PinyinPanel: React.FC<{ data: PinyinData; onClose: () => void }> = ({
   data,
@@ -89,14 +94,20 @@ const PinyinViewer: React.FC = () => {
 
   useEffect(() => {
     // compute pinyin metadata
-    const raw = pinyin(text, { type: "all", nonZh: "consecutive" }) as any[];
+    const raw = pinyin(text, { type: "all", nonZh: "consecutive" }); //as any[];
     // merge with frequency JSON
-    const merged = raw.map((item) => ({
-      ...item,
-      rank: freqData[item.origin]?.rank ?? null,
-      freq: freqData[item.origin]?.freq ?? null,
-      cumFreq: freqData[item.origin]?.cumFreq ?? null,
-    })) as PinyinData[];
+    const merged = raw.map((item) => {
+      //   console.log("Processing item:", item);
+      //   console.log("Frequency data for origin:", item.origin);
+      const itemFreq = (freqData as Record<string, FrequencyData>)[item.origin];
+      const mergedItem = {
+        ...item,
+        rank: itemFreq?.rank ?? null,
+        freq: itemFreq?.freq ?? null,
+        cumFreq: itemFreq?.cumFreq ?? null,
+      };
+      return mergedItem;
+    });
     setData(merged);
     setSelected(null);
   }, [text]);
