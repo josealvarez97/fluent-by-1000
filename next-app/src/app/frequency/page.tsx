@@ -55,9 +55,9 @@ const Flashcard: React.FC<{ item: FrequencyItem }> = ({ item }) => {
       </div>
 
       {flipped ? (
-        <span className="text-2xl font-bold">{py}</span>
+        <span className="text-xl lg:text-2xl font-bold">{py}</span>
       ) : (
-        <span className="text-4xl font-bold">{item.origin}</span>
+        <span className="text-2xl lg:text-4xl font-bold">{item.origin}</span>
       )}
 
       {/* Keep freq/cumFreq in the body, without repeating rank */}
@@ -94,8 +94,8 @@ const FrequencyPage: React.FC = () => {
     );
 
   return (
-    <div className="p-4">
-      <div className="grid grid-cols-5 lg:grid-cols-10 gap-4">
+    <div className="p-2 lg:p-4">
+      <div className="grid grid-cols-5 lg:grid-cols-10 gap-2 lg:gap-4">
         {freqArray.slice(0, 1000).map((item) => (
           <Flashcard key={item.origin} item={item} />
         ))}
