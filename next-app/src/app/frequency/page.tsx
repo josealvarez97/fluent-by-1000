@@ -14,8 +14,15 @@ interface FrequencyItem {
   cumFreq: number;
 }
 
+const getBgClass = (rank: number): string => {
+  if (rank <= 100) return "bg-yellow-100";
+  if (rank <= 300) return "bg-pink-100";
+  if (rank <= 600) return "bg-teal-100";
+  if (rank <= 1000) return "bg-sky-100";
+  return "bg-gray-200";
+};
+
 const FrequencyPage: React.FC = () => {
-  // build a typed array and filter out any null ranks
   const freqArray: FrequencyItem[] = Object.entries(
     freqData as Record<string, RawFreqEntry>
   )
@@ -33,17 +40,20 @@ const FrequencyPage: React.FC = () => {
   return (
     <div className="p-4">
       <div className="grid grid-cols-10 gap-4">
-        {freqArray.slice(0, 100).map((item) => (
-          <div
-            key={item.origin}
-            className="bg-white rounded-2xl shadow-md p-4 flex flex-col items-center text-center"
-          >
-            <span className="text-2xl font-bold mb-1">{item.origin}</span>
-            <span className="text-sm">Rank {item.rank}</span>
-            <span className="text-sm">Freq {item.freq}</span>
-            <span className="text-sm">Cum. {item.cumFreq}</span>
-          </div>
-        ))}
+        {freqArray.slice(0, 1000).map((item) => {
+          const bgClass = getBgClass(item.rank);
+          return (
+            <div
+              key={item.origin}
+              className={`${bgClass} rounded-2xl shadow-md p-4 flex flex-col items-center text-center`}
+            >
+              <span className="text-2xl font-bold mb-1">{item.origin}</span>
+              <span className="text-sm">Rank {item.rank}</span>
+              <span className="text-sm">Freq {item.freq}</span>
+              <span className="text-sm">Cum. {item.cumFreq}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
