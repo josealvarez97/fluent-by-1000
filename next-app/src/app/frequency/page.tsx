@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import { pinyin } from "pinyin-pro";
 import freqData from "@/data/frequency.json";
 
 type RawFreqEntry = {
@@ -22,6 +24,42 @@ const getBgClass = (rank: number): string => {
   return "bg-gray-200";
 };
 
+const Flashcard: React.FC<{ item: FrequencyItem }> = ({ item }) => {
+  const [flipped, setFlipped] = useState(false);
+  // get pinyin (tone marks)
+  const py = pinyin(item.origin, { toneType: "symbol" });
+
+  return (
+    <div
+      onClick={() => setFlipped((prev) => !prev)}
+      className={`
+        ${getBgClass(item.rank)}
+        cursor-pointer
+        rounded-2xl
+        shadow-md
+        p-4
+        flex
+        flex-col
+        items-center
+        justify-center
+        text-center
+        transition-transform
+        transform
+        hover:scale-105
+      `}
+    >
+      {flipped ? (
+        <span className="text-2xl font-bold">{py}</span>
+      ) : (
+        <span className="text-4xl font-bold">{item.origin}</span>
+      )}
+      <div className="mt-2 text-xs text-gray-700">
+        Rank {item.rank} · Freq {item.freq} · Cum. {item.cumFreq}
+      </div>
+    </div>
+  );
+};
+
 const FrequencyPage: React.FC = () => {
   const freqArray: FrequencyItem[] = Object.entries(
     freqData as Record<string, RawFreqEntry>
@@ -40,20 +78,9 @@ const FrequencyPage: React.FC = () => {
   return (
     <div className="p-4">
       <div className="grid grid-cols-10 gap-4">
-        {freqArray.slice(0, 1000).map((item) => {
-          const bgClass = getBgClass(item.rank);
-          return (
-            <div
-              key={item.origin}
-              className={`${bgClass} rounded-2xl shadow-md p-4 flex flex-col items-center text-center`}
-            >
-              <span className="text-2xl font-bold mb-1">{item.origin}</span>
-              <span className="text-sm">Rank {item.rank}</span>
-              <span className="text-sm">Freq {item.freq}</span>
-              <span className="text-sm">Cum. {item.cumFreq}</span>
-            </div>
-          );
-        })}
+        {freqArray.slice(0, 1000).map((item) => (
+          <Flashcard key={item.origin} item={item} />
+        ))}
       </div>
     </div>
   );
