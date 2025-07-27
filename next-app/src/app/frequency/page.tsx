@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { pinyin } from "pinyin-pro";
 import freqData from "@/data/frequency.json";
+import Link from "next/dist/client/link";
 
 type RawFreqEntry = {
   rank: number | null;
@@ -26,13 +27,13 @@ const getBgClass = (rank: number): string => {
 
 const Flashcard: React.FC<{ item: FrequencyItem }> = ({ item }) => {
   const [flipped, setFlipped] = useState(false);
-  // get pinyin (tone marks)
   const py = pinyin(item.origin, { toneType: "symbol" });
 
   return (
     <div
       onClick={() => setFlipped((prev) => !prev)}
       className={`
+        relative
         ${getBgClass(item.rank)}
         cursor-pointer
         rounded-2xl
@@ -48,13 +49,30 @@ const Flashcard: React.FC<{ item: FrequencyItem }> = ({ item }) => {
         hover:scale-105
       `}
     >
+      {/* Rank badge in top-right corner */}
+      <div className="absolute top-2 left-2 text-xs font-semibold text-gray-600">
+        {item.rank}
+      </div>
+
       {flipped ? (
         <span className="text-2xl font-bold">{py}</span>
       ) : (
         <span className="text-4xl font-bold">{item.origin}</span>
       )}
+
+      {/* Keep freq/cumFreq in the body, without repeating rank */}
       <div className="mt-2 text-xs text-gray-700">
-        Rank {item.rank} · Freq {item.freq} · Cum. {item.cumFreq}
+        {/* Freq {item.freq} · Cum {item.cumFreq} */}
+        {flipped ? (
+          <Link
+            href={`https://www.zdic.net/hans/${item.origin}`}
+            target="_blank"
+            className="text-blue-500 hover:underline"
+            rel="noopener noreferrer"
+          >{`我不吃到${py}`}</Link>
+        ) : (
+          `${(item.cumFreq * 100).toFixed(2)}%`
+        )}
       </div>
     </div>
   );
