@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import { pinyin } from "pinyin-pro";
 import freqData from "@/data/frequency.json";
+// import clsx from "clsx";
+import Link from "next/link";
 
 // match the library’s AllData interface plus freq fields
 interface PinyinData {
@@ -84,6 +86,12 @@ const PinyinPanel: React.FC<{ data: PinyinData; onClose: () => void }> = ({
         <strong>IsZh:</strong> {data.isZh ? "Yes" : "No"}
       </li>
     </ul>
+    <Link
+      href={`https://www.zdic.net/hans/${data.origin}`}
+      className="text-blue-500 hover:underline mt-4 block"
+      target="_blank"
+      rel="noopener noreferrer"
+    >{`https://www.zdic.net/hans/${data.origin}`}</Link>
   </div>
 );
 
@@ -124,20 +132,49 @@ const PinyinViewer: React.FC = () => {
         onChange={(e) => setText(e.target.value)}
       />
 
-      <div className="flex flex-wrap gap-1">
-        {data.map((item, i) => (
-          <span
-            key={i}
-            onClick={() => setSelected(item)}
-            title={item.pinyin}
-            className="relative inline-block px-1 py-0.5 text-lg cursor-pointer hover:bg-yellow-100 rounded group"
-          >
-            {item.origin}
-            <span className="absolute -top-6 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-1 py-px rounded opacity-0 group-hover:opacity-100 transition-opacity">
-              {item.pinyin}
+      <div
+        style={{ border: "2px dotted green" }}
+        className="flex flex-wrap gap-1"
+      >
+        {data.map((item, i) => {
+          //   const hoverBg = clsx("hover:bg-yellow-100", {
+          //     "hover:bg-gray-200": item.rank === null,
+          //     "hover:bg-red-100": item.rank && item.rank > 100,
+          //     "hover:bg-green-100": item.rank && item.rank > 300,
+          //     "hover:bg-blue-100": item.rank && item.rank <= 600,
+          //   });
+          let hoverBg = "bg-yellow-100"; // default
+
+          if (item.rank === null) {
+            hoverBg = "bg-gray-200";
+          } else if (item.rank > 1000) {
+            hoverBg = "bg-gray-200";
+          } else if (item.rank > 600) {
+            hoverBg = "bg-sky-200";
+          } else if (item.rank > 300) {
+            hoverBg = "bg-green-200";
+          } else if (item.rank > 100) {
+            hoverBg = "bg-pink-200";
+          }
+          return (
+            <span
+              style={{
+                border: "2px dotted red",
+              }}
+              key={i}
+              onClick={() => setSelected(item)}
+              title={item.pinyin}
+              className={`relative inline-block px-1 py-0.5 text-lg cursor-pointer ${hoverBg} rounded group`}
+            >
+              {item.origin}
+              {false && (
+                <span className="absolute -top-6 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-1 py-px rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                  {item.pinyin}
+                </span>
+              )}
             </span>
-          </span>
-        ))}
+          );
+        })}
       </div>
 
       {selected && (
