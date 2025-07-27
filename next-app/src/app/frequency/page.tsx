@@ -95,7 +95,7 @@ const FrequencyPage: React.FC = () => {
 
   return (
     <div className="p-4">
-      <div className="grid grid-cols-10 gap-4">
+      <div className="grid grid-cols-5 lg:grid-cols-10 gap-4">
         {freqArray.slice(0, 1000).map((item) => (
           <Flashcard key={item.origin} item={item} />
         ))}
