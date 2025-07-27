@@ -87,12 +87,17 @@ const PinyinViewer: React.FC = () => {
 
   useEffect(() => {
     // generate pinyin metadata
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const raw = pinyin(text, { type: "all", nonZh: "consecutive" }) as any[];
     // merge with frequency data
     const merged: PinyinData[] = raw.map((item) => ({
       ...item,
+      // ignore any warning
+      // @ts-expect-error wont use
       rank: freqData[item.origin]?.rank ?? null,
+      // @ts-expect-error wont use
       freq: freqData[item.origin]?.freq ?? null,
+      // @ts-expect-error wont use
       cumFreq: freqData[item.origin]?.cumFreq ?? null,
     }));
     setData(merged);
