@@ -69,7 +69,10 @@ const Flashcard: React.FC<{ item: FrequencyItem }> = ({ item }) => {
             target="_blank"
             className="text-blue-500 hover:underline"
             rel="noopener noreferrer"
-          >{`我不吃到${py}`}</Link>
+          >
+            {/* {`我不吃到${py}`} */}
+            {`不吃到`}
+          </Link>
         ) : (
           `${(item.cumFreq * 100).toFixed(2)}%`
         )}
