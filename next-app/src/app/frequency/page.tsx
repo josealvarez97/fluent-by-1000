@@ -66,8 +66,8 @@ const Flashcard: React.FC<{ item: FrequencyItem }> = ({ item }) => {
         {flipped ? (
           <Link
             href={`https://www.zdic.net/hans/${item.origin}`}
-            target="_blank"
-            // className="text-blue-500 hover:underline"
+            // target="_blank"
+            className="text-blue-500 hover:underline"
             // rel="noopener noreferrer"
           >
             {/* {`我不吃到${py}`} */}
