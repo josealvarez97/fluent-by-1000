@@ -1,7 +1,7 @@
 // pages/pinyin.tsx
 "use client";
 import React, { useState, useEffect } from "react";
-import type { NextPage } from "next";
+// import type { NextPage } from "next";
 import { pinyin } from "pinyin-pro";
 import freqData from "@/data/frequency.json";
 // import clsx from "clsx";
