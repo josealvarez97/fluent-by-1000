@@ -18,7 +18,8 @@ export default async function ChapterPage({
 }) {
   const bible = getBible();
   const _params = await params;
-  const bookName = decodeURIComponent(_params.book);
+  // const bookName = decodeURIComponent(_params.book);
+  const bookName = decodeURIComponent(_params.book.replace(/-/g, " ")); // Replace hyphens with spaces
   const chapNum = Number(_params.chapter);
   const book = bible.books.find((b) => b.name === bookName);
   const chapter = book?.chapters.find((c) => c.chapter === chapNum);

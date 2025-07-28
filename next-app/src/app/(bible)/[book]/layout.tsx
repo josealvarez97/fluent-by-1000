@@ -15,7 +15,8 @@ export default function BookLayout({
   children: React.ReactNode;
 }) {
   const bible = getBible();
-  const bookName = decodeURIComponent(params.book);
+  // const bookName = decodeURIComponent(params.book);
+  const bookName = decodeURIComponent(params.book.replace(/-/g, " ")); // Replace hyphens with spaces
   const book = bible.books.find((b) => b.name === bookName);
 
   if (!book) return <p className="p-6 text-red-500">Book not found</p>;
