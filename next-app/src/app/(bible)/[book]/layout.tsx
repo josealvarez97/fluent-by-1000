@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function generateStaticParams() {
   return getBible().books.map((b) => ({
-    book: encodeURIComponent(b.name.replace(" ", "-")),
+    book: encodeURIComponent(b.name.replaceAll(" ", "-")),
   }));
 }
 
@@ -16,7 +16,7 @@ export default function BookLayout({
 }) {
   const bible = getBible();
   // const bookName = decodeURIComponent(params.book);
-  const bookName = decodeURIComponent(params.book.replace(/-/g, " ")); // Replace hyphens with spaces
+  const bookName = decodeURIComponent(params.book.replaceAll(/-/g, " ")); // Replace hyphens with spaces
   const book = bible.books.find((b) => b.name === bookName);
 
   if (!book) return <p className="p-6 text-red-500">Book not found</p>;
