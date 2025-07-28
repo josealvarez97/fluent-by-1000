@@ -1,15 +1,22 @@
 import { getBible } from "@/lib/getBible";
 import type { Verse } from "@/types/bible";
 
-export function generateStaticParams() {
-  const bible = getBible();
-  return bible.books.flatMap((b) =>
-    b.chapters.map((ch) => ({
-      book: encodeURIComponent(b.name.replace(" ", "-")),
-      chapter: ch.chapter.toString(),
-    }))
-  );
-}
+// export function generateStaticParams() {
+//   const bible = getBible();
+//   return bible.books.flatMap((b) =>
+//     b.chapters.map((ch) => ({
+//       book: encodeURIComponent(b.name.replace(" ", "-")),
+//       chapter: ch.chapter.toString(),
+//     }))
+//   );
+// }
+
+// 1. Fully dynamic SSR
+export const dynamic = "force-dynamic";
+
+// 2. (Optional) If you’d rather have ISR, comment out the above line and
+//    uncomment the next. This will cache each page for 60s.
+// export const revalidate = 60;
 
 export default async function ChapterPage({
   params,
