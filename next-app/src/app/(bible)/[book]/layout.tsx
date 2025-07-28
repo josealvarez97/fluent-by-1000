@@ -2,7 +2,9 @@ import { getBible } from "@/lib/getBible";
 import Link from "next/link";
 
 export function generateStaticParams() {
-  return getBible().books.map((b) => ({ book: encodeURIComponent(b.name) }));
+  return getBible().books.map((b) => ({
+    book: encodeURIComponent(b.name.replace(" ", "-")),
+  }));
 }
 
 export default function BookLayout({

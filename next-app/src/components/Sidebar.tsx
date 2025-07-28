@@ -50,7 +50,7 @@ export default function Sidebar({ books }: { books: Book[] }) {
         </div>
         <ul className="divide-y">
           {books.map((b) => {
-            const slug = encodeURIComponent(b.name);
+            const slug = encodeURIComponent(b.name.replace(" ", "-"));
             return (
               <li key={b.name}>
                 <Link

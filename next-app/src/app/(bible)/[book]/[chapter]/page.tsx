@@ -5,7 +5,7 @@ export function generateStaticParams() {
   const bible = getBible();
   return bible.books.flatMap((b) =>
     b.chapters.map((ch) => ({
-      book: encodeURIComponent(b.name),
+      book: encodeURIComponent(b.name.replace(" ", "-")),
       chapter: ch.chapter.toString(),
     }))
   );
