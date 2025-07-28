@@ -12,11 +12,11 @@ import type { Verse } from "@/types/bible";
 // }
 
 // 1. Fully dynamic SSR
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 // 2. (Optional) If you’d rather have ISR, comment out the above line and
 //    uncomment the next. This will cache each page for 60s.
-// export const revalidate = 60;
+export const revalidate = 60;
 
 export default async function ChapterPage({
   params,
