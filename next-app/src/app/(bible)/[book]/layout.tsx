@@ -7,14 +7,15 @@ export function generateStaticParams() {
   }));
 }
 
-export default function BookLayout({
-  params,
+export default async function BookLayout({
+  params: _params,
   children,
 }: {
-  params: { book: string };
+  params: Promise<{ book: string }>;
   children: React.ReactNode;
 }) {
   const bible = getBible();
+  const params = await _params;
   // const bookName = decodeURIComponent(params.book);
   const bookName = decodeURIComponent(params.book.replaceAll(/-/g, " ")); // Replace hyphens with spaces
   const book = bible.books.find((b) => b.name === bookName);

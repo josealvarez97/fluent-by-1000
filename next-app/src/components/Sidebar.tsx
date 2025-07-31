@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import type { Book } from "@/types/bible";
+import { BookOpen } from "lucide-react";
 
 export default function Sidebar({ books }: { books: Book[] }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,7 @@ export default function Sidebar({ books }: { books: Book[] }) {
           aria-label="Open menu"
           className="text-2xl"
         >
-          ☰
+          <BookOpen size={24} />
         </button>
       </div>
 
