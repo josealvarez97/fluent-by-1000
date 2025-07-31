@@ -12,6 +12,7 @@ export default async function ChapterPage({
 }) {
   const bible = getBible();
   const { book: rawBook, chapter: rawChapter } = await params;
+
   const bookName = decodeURIComponent(rawBook.replaceAll(/-/g, " "));
   const chapNum = Number(rawChapter);
 
