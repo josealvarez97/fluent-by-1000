@@ -6,6 +6,7 @@ import { pinyin } from "pinyin-pro";
 import freqData from "@/data/frequency.json";
 // import clsx from "clsx";
 import Link from "next/link";
+import { ChineseWord } from "@tykok/cedict-dictionary";
 
 // match the library’s AllData interface plus freq fields
 interface PinyinData {
@@ -26,6 +27,8 @@ interface PinyinData {
   rank: number | null;
   freq: number | null;
   cumFreq: number | null;
+  // extra fields for definitions from cedict api
+  definitions?: ChineseWord[]; // optional, may not always be present
 }
 interface FrequencyData {
   rank: number | null;
@@ -103,6 +106,21 @@ const PinyinPanel: React.FC<{ data: PinyinData; onClose: () => void }> = ({
       target="_blank"
       rel="noopener noreferrer"
     >{`https://www.zdic.net/hans/${data.origin}`}</Link>
+    <h3 className="mt-4 text-lg font-semibold">Definitions:</h3>
+    {data.definitions && data.definitions.length > 0 ? (
+      <ul className="list-disc pl-5">
+        {data.definitions.map((def, index) => (
+          <li key={index}>
+            <strong>{def.simplified}</strong> - {def.traditional}{" "}
+            {def.pinyin && `(${def.pinyin})`} - {def.english}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p className="text-gray-500">No definitions available</p>
+    )}
+    {/* For debugging purposes */}
+    <>{JSON.stringify(data, null, 2)}</>
   </div>
 );
 
@@ -116,6 +134,8 @@ const ReusablePinyinViewer: React.FC<ReusablePinyinViewerProps> = ({
   const [data, setData] = useState<PinyinData[]>([]);
   const [selected, setSelected] = useState<PinyinData | null>(null);
 
+  // This basically works as an initializer when the change
+  // never changes in the prop from the parent component
   useEffect(() => {
     // compute pinyin metadata
     const raw = pinyin(text, { type: "all", nonZh: "consecutive" }); //as any[];
@@ -135,6 +155,28 @@ const ReusablePinyinViewer: React.FC<ReusablePinyinViewerProps> = ({
     setData(merged);
     setSelected(null);
   }, [text]);
+
+  async function handleClick(item: PinyinData) {
+    try {
+      console.log("Clicked item:", item);
+      const res = await fetch(`/api/char/${item.origin}`);
+      console.log("Response status (defs):", res.status);
+      if (res.ok) {
+        const jsonResults = await res.json();
+        // attach definitions (adjust depending on API shape)
+        console.log("JSON of definitions:", jsonResults);
+        item.definitions = jsonResults || [];
+      }
+      // Dont panic, assume it's empty I guess
+      // else {
+      //   throw new Error("Failed to fetch definitions");
+      // }
+    } catch (err) {
+      console.error("Error fetching definitions:", err);
+    }
+
+    setSelected({ ...item });
+  }
 
   return (
     <div className=" bg-gray-50">
@@ -168,7 +210,7 @@ const ReusablePinyinViewer: React.FC<ReusablePinyinViewerProps> = ({
                 border: "2px dotted red",
               }}
               key={i}
-              onClick={() => setSelected(item)}
+              onClick={() => handleClick(item)}
               title={item.pinyin}
               className={`relative inline-block px-1 py-0.5 text-lg cursor-pointer ${hoverBg} rounded group`}
             >
