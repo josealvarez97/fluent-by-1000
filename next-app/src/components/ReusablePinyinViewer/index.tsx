@@ -106,21 +106,34 @@ const PinyinPanel: React.FC<{ data: PinyinData; onClose: () => void }> = ({
       target="_blank"
       rel="noopener noreferrer"
     >{`https://www.zdic.net/hans/${data.origin}`}</Link>
-    <h3 className="mt-4 text-lg font-semibold">Definitions:</h3>
+    <h3 className="mt-4 text-lg font-semibold">Definitions</h3>
     {data.definitions && data.definitions.length > 0 ? (
-      <ul className="list-disc pl-5">
+      <div className="space-y-3">
         {data.definitions.map((def, index) => (
-          <li key={index}>
-            <strong>{def.simplified}</strong> - {def.traditional}{" "}
-            {def.pinyin && `(${def.pinyin})`} - {def.english}
-          </li>
+          <div
+            key={index}
+            className="p-3 rounded-md bg-gray-50 border border-gray-200"
+          >
+            <div className="text-lg font-bold">
+              {def.simplified}
+              {def.traditional !== def.simplified && (
+                <span className="text-gray-500 ml-2">({def.traditional})</span>
+              )}
+            </div>
+            <div className="text-sm text-gray-600 italic mb-1">
+              {def.pinyin}
+            </div>
+            <div className="text-sm text-gray-800">
+              {Array.isArray(def.english)
+                ? def.english.join(", ")
+                : def.english}
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     ) : (
       <p className="text-gray-500">No definitions available</p>
     )}
-    {/* For debugging purposes */}
-    <>{JSON.stringify(data, null, 2)}</>
   </div>
 );
 
