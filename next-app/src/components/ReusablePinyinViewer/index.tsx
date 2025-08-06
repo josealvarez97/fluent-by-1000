@@ -72,33 +72,33 @@ const PinyinPanel: React.FC<{ data: PinyinData; onClose: () => void }> = ({
       <li>
         <strong>Cum Freq:</strong> {data.cumFreq ?? "N/A"}
       </li>
-      <li>
+      {/* <li>
         <strong>Tone #:</strong> {data.num}
-      </li>
-      <li>
+      </li> */}
+      {/* <li>
         <strong>Initial:</strong> {data.initial}
-      </li>
-      <li>
+      </li> */}
+      {/* <li>
         <strong>Final:</strong> {data.final}
-      </li>
-      <li>
+      </li> */}
+      {/* <li>
         <strong>First letter:</strong> {data.first}
-      </li>
-      <li>
+      </li> */}
+      {/* <li>
         <strong>Head vowel:</strong> {data.finalHead || "—"}
-      </li>
-      <li>
+      </li> */}
+      {/* <li>
         <strong>Body vowel:</strong> {data.finalBody}
-      </li>
-      <li>
+      </li> */}
+      {/* <li>
         <strong>Tail:</strong> {data.finalTail || "—"}
-      </li>
+      </li> */}
       <li>
         <strong>Polyphonic:</strong> {data.polyphonic.join(", ")}
       </li>
-      <li>
+      {/* <li>
         <strong>IsZh:</strong> {data.isZh ? "Yes" : "No"}
-      </li>
+      </li> */}
     </ul>
     <Link
       href={`https://www.zdic.net/hans/${data.origin}`}
@@ -106,24 +106,16 @@ const PinyinPanel: React.FC<{ data: PinyinData; onClose: () => void }> = ({
       target="_blank"
       rel="noopener noreferrer"
     >{`https://www.zdic.net/hans/${data.origin}`}</Link>
-    <h3 className="mt-4 text-lg font-semibold">Definitions</h3>
+    <h3 className="mt-4 mb-1 text-sm font-semibold">CEDICT</h3>
     {data.definitions && data.definitions.length > 0 ? (
-      <div className="space-y-3">
+      <div className="space-y-2">
         {data.definitions.map((def, index) => (
           <div
             key={index}
             className="p-3 rounded-md bg-gray-50 border border-gray-200"
           >
-            <div className="text-lg font-bold">
-              {def.simplified}
-              {def.traditional !== def.simplified && (
-                <span className="text-gray-500 ml-2">({def.traditional})</span>
-              )}
-            </div>
+            {/* <div className="text-sm font-bold">CEDICT</div> */}
             <div className="text-sm text-gray-600 italic mb-1">
-              {def.pinyin}
-            </div>
-            <div className="text-sm text-gray-800">
               {Array.isArray(def.english)
                 ? def.english.join(", ")
                 : def.english}
@@ -134,6 +126,7 @@ const PinyinPanel: React.FC<{ data: PinyinData; onClose: () => void }> = ({
     ) : (
       <p className="text-gray-500">No definitions available</p>
     )}
+    {/* <>{JSON.stringify(data, null, 2)}</> */}
   </div>
 );
 
