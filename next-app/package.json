@@ -33,6 +33,5 @@
     "eslint-config-next": "15.2.4",
     "tailwindcss": "^4",
     "typescript": "^5.9.2"
-  },
-  "packageManager": "yarn@4.9.2"
+  }
 }
