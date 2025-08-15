@@ -144,7 +144,7 @@ const PinyinViewer: React.FC = () => {
       />
 
       <div
-        style={{ border: "2px dotted green" }}
+        // style={{ border: "2px dotted green" }}
         className="flex flex-wrap gap-1"
       >
         {data.map((item, i) => {
@@ -169,9 +169,11 @@ const PinyinViewer: React.FC = () => {
           }
           return (
             <span
-              style={{
-                border: "2px dotted red",
-              }}
+              style={
+                {
+                  // border: "2px dotted red",
+                }
+              }
               key={i}
               onClick={() => setSelected(item)}
               title={item.pinyin}

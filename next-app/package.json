@@ -12,6 +12,7 @@
     "@ai-sdk/groq": "^2.0.7",
     "@ai-sdk/openai": "^2.0.12",
     "@tykok/cedict-dictionary": "^2.7.14",
+    "@vercel/kv": "^3.0.0",
     "add": "^2.0.6",
     "ai": "^5.0.12",
     "clsx": "^2.1.1",
@@ -21,6 +22,10 @@
     "pinyin-pro": "^3.26.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-markdown": "^10.1.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1",
     "zod": "^4.0.17"
   },
   "devDependencies": {
