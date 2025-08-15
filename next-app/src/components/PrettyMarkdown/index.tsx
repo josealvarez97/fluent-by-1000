@@ -104,7 +104,8 @@ const PrettyMarkdown: React.FC<PrettyMarkdownProps> = ({
     // },
     pre: ({ node, ...props }) => (
       <pre
-        className="border border-neutral-200 dark:border-neutral-800 p-4 overflow-x-auto bg-neutral-50 dark:bg-neutral-900 shadow-sm"
+        //dark:bg-neutral-900
+        className="border border-neutral-200 dark:border-neutral-800 p-4 overflow-x-auto bg-neutral-50  shadow-sm "
         {...props}
       />
     ),
