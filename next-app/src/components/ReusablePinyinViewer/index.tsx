@@ -8,6 +8,8 @@ import freqData from "@/data/frequency.json";
 import Link from "next/link";
 import { ChineseWord } from "@tykok/cedict-dictionary";
 
+import PrettyMarkdown from "../PrettyMarkdown";
+
 // match the library’s AllData interface plus freq fields
 interface PinyinData {
   origin: string;
@@ -78,6 +80,11 @@ const PinyinPanel: React.FC<{
           }
         }
       } catch (err) {
+        if (err instanceof DOMException && err.name === "AbortError") {
+          // Ignore: triggered intentionally by cleanup (React Strict Mode double mount in dev)
+          // Ignore expected abort in dev Strict Mode
+          return;
+        }
         console.error("AI fetch error:", err);
       } finally {
         setLoadingAnswer(false);
@@ -178,16 +185,19 @@ const PinyinPanel: React.FC<{
       )}
       {/* <>{JSON.stringify(data, null, 2)}</> */}
       {/* AI Explanation section starts here */}
-      <h3 className="mt-4 mb-1 text-sm font-semibold">AI Explanation</h3>
-      <div className="p-3 rounded-md bg-gray-50 border border-gray-200">
+      <h3 className="mt-4 mb-[-10] text-xl font-semibold text-right">
+        AI Explanation
+      </h3>
+      <>
         {loadingAnswer && aiAnswer === "" ? (
           <p className="text-sm text-gray-500">Analyzing usage...</p>
         ) : (
-          <p className="text-sm text-gray-800 whitespace-pre-line">
-            {aiAnswer}
-          </p>
+          <>
+            <PrettyMarkdown content={aiAnswer} />
+            {/* {aiAnswer} */}
+          </>
         )}
-      </div>
+      </>
     </div>
   );
 };
@@ -249,7 +259,7 @@ const ReusablePinyinViewer: React.FC<ReusablePinyinViewerProps> = ({
   return (
     <div className=" bg-gray-50">
       <div
-        style={{ border: "2px dotted green" }}
+        // style={{ border: "2px dotted green" }}
         className="flex flex-wrap gap-1"
       >
         {data.map((item, i) => {
@@ -274,9 +284,11 @@ const ReusablePinyinViewer: React.FC<ReusablePinyinViewerProps> = ({
           }
           return (
             <span
-              style={{
-                border: "2px dotted red",
-              }}
+              style={
+                {
+                  // border: "2px dotted red",
+                }
+              }
               key={i}
               onClick={() => handleClick(item)}
               title={item.pinyin}
