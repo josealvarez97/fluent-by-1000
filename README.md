@@ -25,7 +25,6 @@ I built **Fluent by 1000** as a personal project to supercharge my Chinese learn
 
 <img width="1404" height="655" alt="image" src="https://github.com/user-attachments/assets/59fb881c-9eb9-4acb-89e1-cb6fc2720e92" />
 
-
 ## 🔨 Personal Build
 
 Built for my own Chinese practice, this app pairs verses from the Chinese Catholic Bible with instant, character-by-character AI explanations. A frequency list I compiled from the entire corpus keeps study focused on the most useful characters. It’s the kind of tool I wished existed — so I made it.
@@ -34,6 +33,7 @@ Built for my own Chinese practice, this app pairs verses from the Chinese Cathol
 
 ## 📚 Credits & Attribution
 
-This project uses **[CC-CEDICT](https://www.mdbg.net/chinese/dictionary?page=cc-cedict)** for static Chinese definitions.
-CC-CEDICT is licensed under the **[Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)**.
-CC-CEDICT is a continuation of the CEDICT project initiated by Paul Denisowski in 1997.
+- This project uses **[CC-CEDICT](https://www.mdbg.net/chinese/dictionary?page=cc-cedict)** for static Chinese definitions.
+  CC-CEDICT is licensed under the **[Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)**.
+  CC-CEDICT is a continuation of the CEDICT project initiated by Paul Denisowski in 1997.
+- **Bible text** uses the _思高本 (Sīgāo Běn)_ Catholic Chinese translation by the Studium Biblicum Franciscanum.
