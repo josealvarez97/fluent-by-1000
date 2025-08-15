@@ -3,7 +3,7 @@ import { streamText, type ModelMessage } from "ai";
 import type { NextRequest } from "next/server";
 import { Redis } from "@upstash/redis";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 const redis = Redis.fromEnv();
 
