@@ -2,6 +2,16 @@
 
 透過天主教版中文聖經學習中文的創意工具
 
+Watch the video below!
+
+<div>
+    <a href="https://www.loom.com/share/ce37f46a6f35490fb5d9e938f920b319">
+    </a>
+    <a href="https://www.loom.com/share/ce37f46a6f35490fb5d9e938f920b319">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/ce37f46a6f35490fb5d9e938f920b319-37d14a3273d858a7-full-play.gif">
+    </a>
+  </div>
+
 ## 🎯 The Vision
 
 I built **Fluent by 1000** as a personal project to supercharge my Chinese learning. It lets me explore the Chinese Catholic Bible interactively — click any traditional character in a verse and an AI (powered by `openai/gpt-oss-20b`, an open source version of ChatGPT, relying on Groq as a provider) will explain its meaning and usage in context 💡. On top of that, I computed myself a custom frequency list of every Traditional character in the Bible, so I can focus on the top 1000 most common characters first.
