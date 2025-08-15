@@ -22,3 +22,9 @@ I built **Fluent by 1000** as a personal project to supercharge my Chinese learn
 Built for my own Chinese practice, this app pairs verses from the Chinese Catholic Bible with instant, character-by-character AI explanations. A frequency list I compiled from the entire corpus keeps study focused on the most useful characters. It’s the kind of tool I wished existed — so I made it.
 
 為了自己的中文練習，我做了這個應用，將天主教中文版聖經的經文與即時的逐字 AI 解釋配對。我從整本經文中製作了字頻表，讓學習集中在最有用的字上。這是我想要卻找不到的工具——於是自己動手做了。
+
+## 📚 Credits & Attribution
+
+This project uses **[CC-CEDICT](https://www.mdbg.net/chinese/dictionary?page=cc-cedict)** for static Chinese definitions.
+CC-CEDICT is licensed under the **[Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)**.
+CC-CEDICT is a continuation of the CEDICT project initiated by Paul Denisowski in 1997.
