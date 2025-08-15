@@ -17,6 +17,15 @@ I built **Fluent by 1000** as a personal project to supercharge my Chinese learn
 - 🤖 AI 智能解釋：背後運行的是 GPT 驅動的 AI，能用清晰的英文說明每個字的意思與用法，就像擁有一位專屬語言老師！
 - 🎓 字頻學習卡片：專門的學習卡片頁面會突出聖經中出現頻率最高的 1000 個字（依出現頻率排序）。優先學習這些常用字能大幅提升學習效率。
 
+<img width="1411" height="653" alt="image" src="https://github.com/user-attachments/assets/856c5aa5-2071-4c23-96a8-0242ed0467a6" />
+
+<img width="1411" height="663" alt="image" src="https://github.com/user-attachments/assets/cc1ae1ba-45c7-4f41-addf-1ad2e7fb8298" />
+
+<img width="1405" height="667" alt="image" src="https://github.com/user-attachments/assets/71471e1d-fe76-4c34-9cea-7687e1b15f01" />
+
+<img width="1404" height="655" alt="image" src="https://github.com/user-attachments/assets/59fb881c-9eb9-4acb-89e1-cb6fc2720e92" />
+
+
 ## 🔨 Personal Build
 
 Built for my own Chinese practice, this app pairs verses from the Chinese Catholic Bible with instant, character-by-character AI explanations. A frequency list I compiled from the entire corpus keeps study focused on the most useful characters. It’s the kind of tool I wished existed — so I made it.
